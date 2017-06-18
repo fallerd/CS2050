@@ -6,7 +6,7 @@ import math
 Description: CS2050 Assignment 02
 Author: David Faller
 Version: 1
-Help provided to: samson01
+Help provided to: samson01, nbarnes7
 Help received from:
 '''
 
@@ -96,15 +96,10 @@ class dictionary:
                 if key_value[0] == key:
                     key_value[1] = value
                     return
-            self.__items[hashed_key].append([key, value])  # if no duplicates, add key/value
-            self.__count += 1
-            if self.load_factor() > 75:
-                self._double_rehash_()
-        else:
-            self.__items[hashed_key].append([key, value])  # if no hash collision, add new vey/value
-            self.__count += 1
-            if self.load_factor() > 75:
-                self._double_rehash_()
+        self.__items[hashed_key].append([key, value])  # if no hash collision, add new vey/value
+        self.__count += 1
+        if self.load_factor() > 75:
+            self._double_rehash_()
 
     def __getitem__(self, key):
         ''' Retrieve value from the dictionary for given key. '''
